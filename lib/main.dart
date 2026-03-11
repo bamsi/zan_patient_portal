@@ -7,7 +7,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:zan_patient_portal/core/l10n/app_localizations.dart';
 import 'package:zan_patient_portal/core/theme_provider.dart';
-import 'package:zan_patient_portal/core/themes.dart';
 import 'package:zan_patient_portal/features/authentication/data/authentication_repository.dart';
 import 'package:zan_patient_portal/features/authentication/presentation/authentication_provider.dart';
 import 'package:zan_patient_portal/features/authentication/presentation/login_screen.dart';
@@ -77,10 +76,7 @@ class _MyAppState extends State<MyApp> {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
-              supportedLocales: const [
-                Locale('en', ''), // English, no country code
-                Locale('sw', ''), // Swahili, no country code
-              ],
+              supportedLocales: AppLocalizations.supportedLocales,
               home: StreamBuilder<User?>(
                 stream: FirebaseAuth.instance.authStateChanges(),
                 builder: (context, snapshot) {

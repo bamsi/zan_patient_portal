@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:zan_patient_portal/authentication_repository.dart';
+import 'package:zan_patient_portal/features/authentication/data/authentication_repository.dart';
 
 class AuthenticationProvider with ChangeNotifier {
   final AuthenticationRepository _authenticationRepository;
