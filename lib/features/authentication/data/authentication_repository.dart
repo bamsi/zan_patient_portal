@@ -12,7 +12,7 @@ class AuthenticationRepository {
     GoogleSignIn? googleSignIn,
     FlutterSecureStorage? secureStorage,
   })  : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn(),
+        _googleSignIn = googleSignIn ?? GoogleSignIn.instance,
         _secureStorage = secureStorage ?? const FlutterSecureStorage();
 
   Future<UserCredential> signInWithEmailAndPassword({
@@ -26,12 +26,11 @@ class AuthenticationRepository {
   }
 
   Future<UserCredential> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+    final googleUser = await _googleSignIn.authenticate();
+    final googleAuth = googleUser.authentication;
     final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
+      accessToken: googleAuth.idToken,
+      idToken: googleAuth.idToken,
     );
     return await _firebaseAuth.signInWithCredential(credential);
   }
