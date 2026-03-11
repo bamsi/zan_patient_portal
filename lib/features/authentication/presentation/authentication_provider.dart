@@ -26,12 +26,6 @@ class AuthenticationProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> signInWithGoogle() async {
-    final userCredential = await _authenticationRepository.signInWithGoogle();
-    _user = userCredential.user;
-    notifyListeners();
-  }
-
   Future<void> signOut() async {
     await _authenticationRepository.signOut();
     _user = null;
