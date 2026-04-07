@@ -57,26 +57,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Future<void> _signInWithGoogle() async {
-    setState(() {
-      _isLoading = true;
-    });
-    try {
-      await Provider.of<AuthenticationProvider>(context, listen: false)
-          .signInWithGoogle();
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.toString()),
-        ),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
-
   Future<void> _authenticateWithBiometrics() async {
     final LocalAuthentication auth = LocalAuthentication();
     final bool canAuthenticate = await auth.canCheckBiometrics;
@@ -167,12 +147,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ElevatedButton(
                       onPressed: _login,
                       child: Text(l10n.login),
-                    ),
-                    const SizedBox(height: 16),
-                    ElevatedButton.icon(
-                      onPressed: _signInWithGoogle,
-                      icon: const Icon(Icons.login),
-                      label: const Text('Sign in with Google'),
                     ),
                     const SizedBox(height: 16),
                     ElevatedButton.icon(

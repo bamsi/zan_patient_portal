@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zan_patient_portal/l10n/app_localizations.dart';
-import 'package:zan_patient_portal/theme_provider.dart';
-import 'package:zan_patient_portal/authentication_provider.dart';
+import 'package:zan_patient_portal/core/l10n/app_localizations.dart';
+import 'package:zan_patient_portal/core/theme_provider.dart';
+import 'package:zan_patient_portal/features/authentication/presentation/authentication_provider.dart';
 import 'package:zan_patient_portal/book_appointment_screen.dart';
 import 'package:zan_patient_portal/manage_appointments_screen.dart';
 import 'package:zan_patient_portal/billing_payments_screen.dart';
@@ -80,17 +80,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               TextFormField(
                 controller: _addressController,
                 decoration: InputDecoration(labelText: l10n.address),
-                obscureText: true,
               ),
               TextFormField(
                 controller: _emergencyContactController,
                 decoration: InputDecoration(labelText: l10n.emergencyContact),
-                obscureText: true,
               ),
               TextFormField(
                 controller: _insuranceDetailsController,
                 decoration: InputDecoration(labelText: l10n.insuranceDetails),
-                obscureText: true,
               ),
               const SizedBox(height: 16),
               ElevatedButton(
